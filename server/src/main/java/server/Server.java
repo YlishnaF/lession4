@@ -6,12 +6,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Server {
     private List<ClientHandler> clients;
     private AuthService authService;
-
     public Server() {
         clients = new Vector<>();
 
@@ -35,6 +36,7 @@ public class Server {
                 socket = server.accept();
                 System.out.println("Клиент подключился ");
                 new ClientHandler(this, socket);
+
             }
 
         } catch (IOException e) {
